@@ -13,17 +13,35 @@
 <h1>Spoti<span style="color:var(--s-g)">shay</span></h1>
 <input type="number" id="_0x4a2" inputmode="numeric" placeholder="SET BPM">
 <input type="number" id="_0x5b1" inputmode="numeric" placeholder="SET TIME">
-<button class="m-n" onclick="_0x7m1()">PREVIEW BEAT</button>
-<button onclick="_0xaf23()">GO LIVE</button>
+<button class="m-n" id="p-v">PREVIEW BEAT</button>
+<button id="g-l">GO LIVE</button>
 <div id="d-y">00:00</div>
 </div>
 <script>
-var _0x2122=["\x68\x72\x65\x66","\x73\x70\x6F\x74\x69\x66\x79\x3A\x73\x74\x61\x74\x69\x6F\x6E\x3A\x73\x65\x61\x72\x63\x68\x3A","\x20\x62\x70\x6D\x20\x77\x6F\x72\x6B\x6F\x75\x74","\x76\x61\x6C\x75\x65","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x64\x69\x73\x70\x6C\x61\x79","\x73\x74\x79\x6C\x65","\x62\x6C\x6F\x63\x6B"];
-let _0x99a;
-function _0x7m1(){const b=document[_0x2122[4]](`_0x4a2`)[_0x2122[3]];if(!b)return;const a=new (window.AudioContext||window.webkitAudioContext)();const i=60/b;const o=a.createOscillator();const g=a.createGain();o.connect(g);g.connect(a.destination);o.type=`sine`;o.frequency.value=880;g.gain.setValueAtTime(0,a.currentTime);for(let j=0;j<10;j++){g.gain.linearRampToValueAtTime(1,a.currentTime+j*i);g.gain.linearRampToValueAtTime(0,a.currentTime+j*i+0.05)}o.start();o.stop(a.currentTime+10*i)}
-function _0xaf23(){var _0x1a=document[_0x2122[4]](`_0x4a2`)[_0x2122[3]];var _0x2b=document[_0x2122[4]](`_0x5b1`)[_0x2122[3]];if(!_0x1a||!_0x2b)return;var _0x3c=_0x2122[1]+encodeURIComponent(_0x1a+_0x2122[2]);window.location[_0x2122[0]]=_0x3c;document[_0x2122[4]](`d-y`)[_0x2122[6]][_0x2122[5]]=_0x2122[7];_0x9e12(_0x2b)}
-function _0x9e12(_0x4d){var _0x5e=_0x4d*60;var _0x6f=setInterval(function(){var _0x7g=Math.floor(_0x5e/60);var _0x8h=_0x5e%60;document[_0x2122[4]](`d-y`).innerText=_0x7g.toString().padStart(2,`0`)+`:`+_0x8h.toString().padStart(2,`0`);if(--_0x5e<0){clearInterval(_0x6f);_0xbeep()}},1000)}
-function _0xbeep(){const a=new (window.AudioContext||window.webkitAudioContext)();const o=a.createOscillator();o.connect(a.destination);o.type=`square`;o.frequency.value=440;o.start();o.stop(a.currentTime+2)}
+var _0x5142=["\x68\x72\x65\x66","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x6F\x70\x65\x6E\x2E\x73\x70\x6F\x74\x69\x66\x79\x2E\x63\x6F\x6D\x2F\x73\x65\x61\x72\x63\x68\x2F","\x2F\x74\x72\x61\x63\x6B\x73","\x76\x61\x6C\x75\x65","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x64\x69\x73\x70\x6C\x61\x79","\x73\x74\x79\x6C\x65","\x62\x6C\x6F\x63\x6B"];
+let ctx;
+
+document.getElementById('p-v').addEventListener('click', function() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ctx.state === 'suspended') ctx.resume();
+    _0x7m1();
+});
+
+document.getElementById('g-l').addEventListener('click', function() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    _0xaf23();
+});
+
+function _0x7m1(){const b=document[_0x5142[4]](`_0x4a2`)[_0x5142[3]];if(!b)return;const i=60/b;const o=ctx.createOscillator();const g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type=`sine`;o.frequency.value=1000;g.gain.setValueAtTime(0,ctx.currentTime);for(let j=0;j<8;j++){g.gain.linearRampToValueAtTime(1,ctx.currentTime+j*i);g.gain.linearRampToValueAtTime(0,ctx.currentTime+j*i+0.04)}o.start();o.stop(ctx.currentTime+8*i)}
+
+function _0xaf23(){var _0x1a=document[_0x5142[4]](`_0x4a2`)[_0x5142[3]];var _0x2b=document[_0x5142[4]](`_0x5b1`)[_0x5142[3]];if(!_0x1a||!_0x2b)return;
+var _0x3c=_0x5142[1]+encodeURIComponent(_0x1a+" bpm workout")+_0x5142[2];
+window.location[_0x5142[0]]=_0x3c;
+document[_0x5142[4]](`d-y`)[_0x5142[6]][_0x5142[5]]=_0x5142[7];_0x9e12(_0x2b)}
+
+function _0x9e12(_0x4d){var _0x5e=_0x4d*60;var _0x6f=setInterval(function(){var _0x7g=Math.floor(_0x5e/60);var _0x8h=_0x5e%60;document[_0x5142[4]](`d-y`).innerText=_0x7g.toString().padStart(2,`0`)+`:`+_0x8h.toString().padStart(2,`0`);if(--_0x5e<0){clearInterval(_0x6f);_0xbeep()}},1000)}
+
+function _0xbeep(){const o=ctx.createOscillator();o.connect(ctx.destination);o.type=`square`;o.frequency.value=600;o.start();o.stop(ctx.currentTime+1.5)}
 </script>
 </body>
 </html>
